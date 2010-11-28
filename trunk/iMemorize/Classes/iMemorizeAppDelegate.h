@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface iMemorizeAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
+
+@interface iMemorizeAppDelegate : NSObject <UIApplicationDelegate>
+{
+	UIWindow *window;
+	UINavigationController *navigation;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (retain) UINavigationController *navigation;
 
 @end
 
