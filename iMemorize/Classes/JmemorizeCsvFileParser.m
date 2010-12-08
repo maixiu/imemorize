@@ -72,7 +72,9 @@
             }
         }
         if (columns.count == 4) {
-			Card *card = [Card cardWithFrontSide:[columns objectAtIndex:0] flipSide:[columns objectAtIndex:1]];
+			Card *card = [Card cardWithFrontSide:[columns objectAtIndex:0]
+										flipSide:[columns objectAtIndex:1]
+											deck:[[columns objectAtIndex:3] intValue]];
 			[cards addObject:card];
 		}
 		

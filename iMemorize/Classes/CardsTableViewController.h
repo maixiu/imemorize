@@ -7,17 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CardSet.h"
 
 
 @interface CardsTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 {
-	CardSet *set;
+	NSArray *cards;
 	NSArray *sections;
 	NSDictionary *pagedCardSet;
 	NSArray *searchCards;
 }
 
-@property (nonatomic, retain) CardSet *set;
+@property (nonatomic, retain) NSArray *cards;
 
 @end
