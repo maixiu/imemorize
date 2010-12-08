@@ -7,16 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LearnSettingsViewController.h"
 
 @interface iMemorizeAppDelegate : NSObject <UIApplicationDelegate>
 {
 	UIWindow *window;
-	UINavigationController *navigation;
+	UINavigationController *cardsNavigation;
+	UITabBarController *mainTabBarController;
+	LearnSettingsViewController *learnSettings;
+	NSArray *cards;
 }
 
+- (NSString *)cardsDataFilePath;
+
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (retain) UINavigationController *navigation;
+@property (nonatomic, retain) IBOutlet UINavigationController *cardsNavigation;
+@property (nonatomic, retain) IBOutlet UITabBarController *mainTabBarController;
+@property (nonatomic, retain) IBOutlet LearnSettingsViewController *learnSettings;
+@property (nonatomic, retain) NSArray *cards;
 
 @end
 

@@ -7,33 +7,60 @@
 //
 
 #import "iMemorizeAppDelegate.h"
-#import "CardsTableViewController.h"
+#import "SummaryTableViewController.h"
+#import "JmemorizeCsvFileParser.h";
 
 
 @implementation iMemorizeAppDelegate
 
-@synthesize window, navigation;
+@synthesize window, cardsNavigation, mainTabBarController, learnSettings, cards;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
-	// Chargement des cartes
-	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"jmemorize" ofType:@"csv"];
-	CardSet *set = [[CardSet alloc] initWithFile:filePath];
+{
+	NSString *cardsFilePath = [self cardsDataFilePath];
+	if ([[NSFileManager defaultManager] fileExistsAtPath:cardsFilePath]) {
+		// Chargement des cartes à partir du fichier archivé
+		NSData *cardsData = [NSData dataWithContentsOfFile:cardsFilePath];
+		cards = [NSKeyedUnarchiver unarchiveObjectWithData:cardsData];
+	}
+	else {
+		// Chargement des cartes à partir du fichier en resources
+		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"jmemorize" ofType:@"csv"];
+		NSString *dataFile = [NSString stringWithContentsOfFile:filePath
+													   encoding:NSUTF8StringEncoding
+														  error:NULL];
+		cards = [[JmemorizeCsvFileParser parseCardsFromData:dataFile] retain];
+	}
+
+	// Création et initialisation du view controller des listes de cartes
+	SummaryTableViewController *summaryTable = [[SummaryTableViewController alloc] init];
+	summaryTable.cards = cards;
 	
-	navigation = [[UINavigationController alloc] init];
-	CardsTableViewController *cardsTable = [[CardsTableViewController alloc] initWithNibName:@"CardsTable" bundle:nil];
-	cardsTable.set = set;
+	// Initialization du view controller "LearnSettings"
+	self.learnSettings.cards = cards;
 	
-	[self.navigation pushViewController:cardsTable animated:NO];
-	[window addSubview:navigation.view];
+	[self.cardsNavigation pushViewController:summaryTable animated:NO];
+	[window addSubview:mainTabBarController.view];
     [window makeKeyAndVisible];
    
-	[cardsTable release];
-	[set release];
+	[summaryTable release];
     return YES;
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+	NSData *cardsData = [NSKeyedArchiver archivedDataWithRootObject:self.cards];
+	[cardsData writeToFile:[self cardsDataFilePath] atomically:YES];
+}
+
+- (NSString *)cardsDataFilePath
+{
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentDirectory = [paths objectAtIndex:0];
+	return [documentDirectory stringByAppendingPathComponent:@"iMemorize"];
 }
 
 
@@ -43,7 +70,6 @@
 - (void)dealloc
 {
     [window release];
-	[navigation release];
     [super dealloc];
 }
 

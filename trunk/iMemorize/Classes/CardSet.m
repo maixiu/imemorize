@@ -7,6 +7,7 @@
 //
 
 #import "CardSet.h"
+#import "Constants.h"
 #import "JmemorizeCsvFileParser.h"
 
 
@@ -14,22 +15,33 @@
 
 @synthesize cards;
 
-- (id)initWithFile:(NSString *)path
+- (void)loadCardSetFromPersistance
 {
-	self = [self init];
-	[self loadCardsFromFile:path];
-	
-	return self;
+	NSString *cardsFilePath = [CardSet cardsDataFilePath];
+	if ([[NSFileManager defaultManager] fileExistsAtPath:cardsFilePath]) {
+		// Chargement des cartes à partir du fichier archivé
+		NSData *cardsData = [NSData dataWithContentsOfFile:cardsFilePath];
+		cards = [NSKeyedUnarchiver unarchiveObjectWithData:cardsData];
+	}
+	else {
+		// Chargement des cartes à partir du fichier en resources
+		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"jmemorize" ofType:@"csv"];
+		NSString *dataFile = [NSString stringWithContentsOfFile:filePath
+													   encoding:NSUTF8StringEncoding
+														  error:NULL];
+		cards = [[JmemorizeCsvFileParser parseCardsFromData:dataFile] retain];
+	}
 }
 
-- (void)loadCardsFromFile:(NSString *)path
++ (NSString *)cardsDataFilePath
 {
-	NSString *dataFile = [NSString stringWithContentsOfFile:path
-												   encoding:NSUTF8StringEncoding
-													  error:NULL];
-	cards = [JmemorizeCsvFileParser parseCardsFromData:dataFile];
-	[cards retain];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentDirectory = [paths objectAtIndex:0];
+	return [documentDirectory stringByAppendingPathComponent:kArchiveFileName];	
 }
+
+#pragma mark -
+#pragma mark Memory management
 
 - (void)dealloc
 {

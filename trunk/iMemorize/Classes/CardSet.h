@@ -15,8 +15,8 @@
 	NSArray *cards;
 }
 
-- (id)initWithFile:(NSString *)path;
-- (void)loadCardsFromFile:(NSString *)path;
++ (NSString *)cardsDataFilePath;
+- (void)loadCardSetFromPersistance;
 
 @property (readonly) NSArray *cards;
 

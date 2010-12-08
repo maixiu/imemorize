@@ -8,7 +8,7 @@
 
 #import "CardsTableViewController.h"
 #import "CardDetailViewController.h"
-#import "CardSet.h"
+
 
 @interface CardsTableViewController()
 @property (nonatomic, retain) NSDictionary *pagedCardSet;
@@ -22,14 +22,14 @@
 
 @implementation CardsTableViewController
 
-@synthesize set;
+@synthesize cards;
 @synthesize sections, pagedCardSet, searchCards;
 
 - (NSDictionary *)pagedCardSet
 {
 	if (!pagedCardSet) {
-		NSMutableDictionary *sortedCards = [NSMutableDictionary dictionaryWithCapacity:self.set.cards.count];
-		for (Card *card in self.set.cards) {
+		NSMutableDictionary *sortedCards = [NSMutableDictionary dictionaryWithCapacity:self.cards.count];
+		for (Card *card in self.cards) {
 			int charIndex = ([card.flipSide characterAtIndex:0] == '_') ? 1 : 0;
 			NSString *firstLetter = [[NSString stringWithFormat:@"%C", [card.flipSide characterAtIndex:charIndex]] lowercaseString];
 			NSMutableArray *cardList;
@@ -67,8 +67,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	self.title = @"Cards";
+
 	UIBarButtonItem *bbItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
 																			target:nil
 																			action:nil];
@@ -97,8 +96,8 @@
 			return 0;
 		}
 		
-		NSArray *cards = [self.pagedCardSet objectForKey:[self.sections objectAtIndex:section]];
-		return cards.count;
+		NSArray *sectionCards = [self.pagedCardSet objectForKey:[self.sections objectAtIndex:section]];
+		return sectionCards.count;
 	}
 	else {
 		return self.searchCards.count;
@@ -149,8 +148,8 @@
     
 	Card *card;
 	if (tableView == self.tableView) {
-		NSArray *cards = [self.pagedCardSet objectForKey:[self.sections objectAtIndex:indexPath.section]];
-		card = [cards objectAtIndex:indexPath.row];
+		NSArray *sectionCards = [self.pagedCardSet objectForKey:[self.sections objectAtIndex:indexPath.section]];
+		card = [sectionCards objectAtIndex:indexPath.row];
 	}
 	else {
 		card = [self.searchCards objectAtIndex:indexPath.row];
@@ -159,6 +158,21 @@
     cell.textLabel.text = card.frontSide;
 	cell.detailTextLabel.text = card.flipSide;
 	
+	UIImage *cellImage;
+	if (card.deck > 0) {
+		NSComparisonResult isExpired = [card.expired compare:[NSDate dateWithTimeIntervalSinceNow:0]];
+		if (isExpired == NSOrderedDescending) {
+			cellImage = [UIImage imageNamed:@"state_ok.gif"];
+		}
+		else {
+			cellImage = [UIImage imageNamed:@"state_forgotten.gif"];
+		}
+	}
+	else {
+		cellImage = [UIImage imageNamed:@"state_no.gif"];
+	}
+
+	cell.imageView.image = cellImage;
     return cell;
 }
 
@@ -170,8 +184,8 @@
 {
 	Card *card;
 	if (tableView == self.tableView) {
-		NSArray *cards = [self.pagedCardSet objectForKey:[self.sections objectAtIndex:indexPath.section]];
-		card = [cards objectAtIndex:indexPath.row];
+		NSArray *sectionCards = [self.pagedCardSet objectForKey:[self.sections objectAtIndex:indexPath.section]];
+		card = [sectionCards objectAtIndex:indexPath.row];
 	}
 	else {
 		card = [self.searchCards objectAtIndex:indexPath.row];
@@ -211,8 +225,8 @@
 	if ([searchText length] > 0) {
 		if (scopeIndex == 0) {
 			//Search cards which frontside (hanzi) match the searched text
-			NSMutableArray *tempSearch = [NSMutableArray arrayWithCapacity:self.set.cards.count];
-			for (Card *card in self.set.cards) {
+			NSMutableArray *tempSearch = [NSMutableArray arrayWithCapacity:self.cards.count];
+			for (Card *card in self.cards) {
 				if ([card.frontSide compare:searchText options:NSLiteralSearch range:NSMakeRange(0, searchText.length)] == NSOrderedSame) {
 					[tempSearch addObject:card];
 				}
@@ -230,7 +244,7 @@
 			if ([searchText compare:@"a" options:NSLiteralSearch range:NSMakeRange(0, 1)] == NSOrderedSame) {
 				NSArray *values = [self.pagedCardSet objectsForKeys:[NSArray arrayWithObjects:@"à", @"ā", @"ǎ", nil]
 													 notFoundMarker:[NSNull null]];
-				firstCharSearchValues = [NSMutableArray arrayWithCapacity:[self.set.cards count]];
+				firstCharSearchValues = [NSMutableArray arrayWithCapacity:[self.cards count]];
 				for (id value in values) {
 					if (value != [NSNull null]) {
 						[firstCharSearchValues addObjectsFromArray:value];
@@ -240,7 +254,7 @@
 			else if ([searchText compare:@"e" options:NSLiteralSearch range:NSMakeRange(0, 1)] == NSOrderedSame) {
 				NSArray *values = [self.pagedCardSet objectsForKeys:[NSArray arrayWithObjects:@"è", @"é", @"ě", nil]
 													 notFoundMarker:[NSNull null]];
-				firstCharSearchValues = [NSMutableArray arrayWithCapacity:[self.set.cards count]];
+				firstCharSearchValues = [NSMutableArray arrayWithCapacity:[self.cards count]];
 				for (id value in values) {
 					if (value != [NSNull null]) {
 						[firstCharSearchValues addObjectsFromArray:value];
@@ -315,7 +329,7 @@
 
 - (void)dealloc
 {
-	[set release];
+	[cards release];
 	[sections release];
 	[pagedCardSet release];
     [super dealloc];
