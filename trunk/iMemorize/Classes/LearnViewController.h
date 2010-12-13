@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 
 
+@protocol LearnViewDelegate
+- (void)cardsUpdated:(NSArray *)cards;
+@end
+
+
 @interface LearnViewController : UIViewController {
 	NSArray *cards;
 	int currentCardIndex;
@@ -22,6 +27,7 @@
 	UIButton *btnYes;
 	UIButton *btnNo;
 	UIButton *btnClose;
+	id <LearnViewDelegate> delegate;
 }
 
 @property (nonatomic, retain) NSArray *cards;
@@ -34,6 +40,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *btnYes;
 @property (nonatomic, retain) IBOutlet UIButton *btnNo;
 @property (nonatomic, retain) IBOutlet UIButton *btnClose;
+@property (assign) id <LearnViewDelegate> delegate;
 
 - (IBAction)btnCancelTouchUpInside:(id)sender;
 - (IBAction)btnAnswerTouchUpInside:(id)sender;

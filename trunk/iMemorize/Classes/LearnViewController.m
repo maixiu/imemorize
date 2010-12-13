@@ -28,6 +28,7 @@
 @synthesize progressView, lblProgress, lblFront, txtFlip;
 @synthesize btnCancel, btnAnswer, btnYes, btnNo, btnClose;
 @synthesize currentCardIndex, totalCardsCount;
+@synthesize delegate;
 
 
 #pragma mark -
@@ -49,11 +50,13 @@
 
 - (IBAction)btnCancelTouchUpInside:(id)sender
 {
+	[self.delegate cardsUpdated:self.cards];
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)btnCloseTouchUpInside:(id)sender
 {
+	[self.delegate cardsUpdated:self.cards];
 	[self dismissModalViewControllerAnimated:YES];
 }
 

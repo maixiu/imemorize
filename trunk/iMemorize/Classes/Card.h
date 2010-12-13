@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#define kDeckKey		@"deck"
-#define kExpiredKey		@"expired"
-#define kFrontSideKey	@"frontSide"
-#define kFlipSideKey	@"flipSide"
+#define kCodingDeckKey		@"deck"
+#define kCodingExpiredKey	@"expired"
+#define kCodingFrontSideKey	@"frontSide"
+#define kCodingFlipSideKey	@"flipSide"
 
 @interface Card : NSObject <NSCoding>
 {
