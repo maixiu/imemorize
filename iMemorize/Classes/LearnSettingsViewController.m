@@ -12,7 +12,7 @@
 
 @implementation LearnSettingsViewController
 
-@synthesize lblNbCardsToLearn, scCardsToLearn, cards;
+@synthesize lblNbCardsToLearn, scCardsToLearn, set;
 
 
 #pragma mark -
@@ -27,27 +27,26 @@
 
 - (IBAction)startTouchUpInside:(id)sender
 {
-	NSMutableArray *cardsToLearn = [NSMutableArray arrayWithCapacity:self.cards.count];
 	int nbCardsToLearn = [self.lblNbCardsToLearn.text intValue];
+	BOOL isKnown = self.scCardsToLearn.selectedSegmentIndex == 1;
+	NSArray *cardsToLearn = [self.set getCardsToLearn:nbCardsToLearn thatAreKnown:isKnown];
 	
-	for (Card *card in self.cards) {
-		BOOL isExpired = [card.expired compare:[NSDate dateWithTimeIntervalSinceNow:0]] == NSOrderedAscending;
-		//Si unlearned est sélectionné || si expired est sélectionné
-		if ((self.scCardsToLearn.selectedSegmentIndex == 0 && card.deck == 0) ||
-			(self.scCardsToLearn.selectedSegmentIndex == 1 && isExpired))
-		{
-			[cardsToLearn addObject:card];
-			if (cardsToLearn.count == nbCardsToLearn) {
-				break;
-			}
-		}
-	}
-
 	LearnViewController *learn = [[LearnViewController alloc] initWithNibName:@"Learn" bundle:nil];
 	learn.cards = cardsToLearn;
+	learn.delegate = self;
 	[learn setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
 	[self presentModalViewController:learn animated:YES];
+	
 	[learn release];
+}
+
+
+#pragma mark -
+#pragma mark LearnViewDelegate
+
+- (void)cardsUpdated:(NSArray *)cards
+{
+	[self.set updateCards:cards];
 }
 
 
@@ -65,6 +64,7 @@
     [super dealloc];
 	[lblNbCardsToLearn release];
 	[scCardsToLearn release];
+	[set release];
 }
 
 

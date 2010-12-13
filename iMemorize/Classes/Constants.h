@@ -15,5 +15,7 @@
 
 extern int const kMaxDeckCount;
 extern NSString * const kArchiveFileName;
+extern NSString * const kResourceJmemorizeFileName;
+extern NSString * const kResourceJmemorizeFileType;
 
 @end

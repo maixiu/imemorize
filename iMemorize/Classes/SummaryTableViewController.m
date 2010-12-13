@@ -10,20 +10,13 @@
 #import "Card.h"
 #import "CardsTableViewController.h"
 #import "Constants.h"
+#import "Deck.h"
 
-
-@interface SummaryTableViewController()
-@property (nonatomic, retain) NSArray *decks;
-@property (nonatomic, retain) NSArray *notLearnedCards;
-@property (nonatomic, retain) NSArray *decksAreExpired;
-
-- (void)initDecks;
-@end
 
 @implementation SummaryTableViewController
 
-@synthesize cards;
-@synthesize decks, notLearnedCards, decksAreExpired;
+@synthesize set;
+
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -33,7 +26,6 @@
     [super viewDidLoad];
 	
 	self.title = @"iMemorize";
-	[self initDecks];
 }
 
 
@@ -45,28 +37,25 @@
     return 1;
 }
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.decks.count + 2;
+    return self.set.decks.count + 2;
 }
 
-
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
 	UIImage *cellImage;
 	if (indexPath.row == 0) {
 		cell.textLabel.text = @"Summary";
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.cards.count];
-		if ([self.decksAreExpired containsObject:[NSNumber numberWithBool:YES]]) {
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.set.cards.count];
+		if (self.set.isExpired) {
 			cellImage = [UIImage imageNamed:@"state_forgotten.gif"];
 		}
 		else {
@@ -75,8 +64,8 @@
 	}
 	else if (indexPath.row == 1) {
 		cell.textLabel.text = @"Not learned";
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.notLearnedCards.count];
-		if (self.notLearnedCards.count > 0) {
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.set.cardsNotLearned.count];
+		if (self.set.cardsNotLearned.count > 0) {
 			cellImage = [UIImage imageNamed:@"state_no.gif"];
 		}
 		else {
@@ -85,9 +74,9 @@
 	}
 	else {
 		cell.textLabel.text = [NSString stringWithFormat:@"Deck %d", indexPath.row - 1];
-		NSArray *deck = [self.decks objectAtIndex:indexPath.row - 2];
-		cell.detailTextLabel.text = [NSString  stringWithFormat:@"%d", deck.count]; 
-		if ([self.decksAreExpired objectAtIndex:indexPath.row - 2] == [NSNumber numberWithBool:YES]) {
+		Deck *deck = [self.set.decks objectAtIndex:indexPath.row - 2];
+		cell.detailTextLabel.text = [NSString  stringWithFormat:@"%d", deck.cards.count]; 
+		if (deck.isExpired) {
 			cellImage = [UIImage imageNamed:@"state_forgotten.gif"];
 		}
 		else {
@@ -109,16 +98,16 @@
 	CardsTableViewController *cardsTable = [[CardsTableViewController alloc] initWithNibName:@"CardsTable"
 																					 bundle:nil];
 	if (indexPath.row == 0) {
-		cardsTable.cards = self.cards;
+		cardsTable.cards = self.set.cards;
 		cardsTable.title = @"Summary";
 	}
 	else if (indexPath.row == 1) {
-		cardsTable.cards = self.notLearnedCards;
+		cardsTable.cards = self.set.cardsNotLearned;
 		cardsTable.title = @"Not learned";
 	}
 	else {
-		NSArray *deck = [self.decks objectAtIndex:indexPath.row - 2];
-		cardsTable.cards = deck;
+		Deck *deck = [self.set.decks objectAtIndex:indexPath.row - 2];
+		cardsTable.cards = deck.cards;
 		cardsTable.title = [NSString stringWithFormat:@"Deck %d", indexPath.row - 1];
 	}
 	
@@ -128,43 +117,12 @@
 
 
 #pragma mark -
-#pragma mark Private methods
+#pragma mark CardSetDelegate
 
-- (void)initDecks
+- (void)cardsUpdated:(id)sender
 {
-	//initialize decksAreExpired
-	NSMutableArray *initDecksAreExpired = [[NSMutableArray alloc] initWithCapacity:kMaxDeckCount];
-	for (int i = 0; i < kMaxDeckCount; i++) {
-		[initDecksAreExpired addObject:[NSNumber numberWithBool:NO]];
-	}
-	
-	NSMutableArray *newDecks = [[NSMutableArray alloc] initWithCapacity:kMaxDeckCount];
-	NSMutableArray *newNotLearnedCards = [[NSMutableArray alloc] initWithCapacity:kMaxDeckCount];
-	for (Card *card in self.cards) {
-		if (card.deck > 0) {
-			int deckNum = card.deck <= kMaxDeckCount ? card.deck : kMaxDeckCount;
-			if (deckNum > newDecks.count) {
-				for (int i = newDecks.count; i < deckNum; i++) {
-					[newDecks insertObject:[NSMutableArray arrayWithCapacity:self.cards.count] atIndex:i];
-				}
-			}
-			
-			NSMutableArray *cardsInDeck = [newDecks objectAtIndex:deckNum - 1];
-			[cardsInDeck addObject:card];
-			
-			//test expired
-			if ([card.expired compare:[NSDate dateWithTimeIntervalSinceNow:0]] == NSOrderedAscending) {
-				[initDecksAreExpired replaceObjectAtIndex:deckNum - 1 withObject:[NSNumber numberWithBool:YES]];
-			}
-		}
-		else {
-			[newNotLearnedCards addObject:card];
-		}
-	}
-	
-	decks = newDecks;
-	decksAreExpired = initDecksAreExpired;
-	notLearnedCards = newNotLearnedCards;
+	[self.navigationController popToViewController:self animated:NO];
+	[self.tableView reloadData];
 }
 
 
@@ -173,9 +131,7 @@
 
 - (void)dealloc
 {
-	[cards release];
-	[decks release];
-	[notLearnedCards release];
+	[set release];
     [super dealloc];
 }
 

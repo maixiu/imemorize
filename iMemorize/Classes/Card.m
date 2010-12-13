@@ -18,19 +18,19 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	[aCoder encodeInt:self.deck forKey:kDeckKey];
-	[aCoder encodeObject:self.expired forKey:kExpiredKey];
-	[aCoder encodeObject:self.frontSide forKey:kFrontSideKey];
-	[aCoder encodeObject:self.flipSide forKey:kFlipSideKey];
+	[aCoder encodeInt:self.deck forKey:kCodingDeckKey];
+	[aCoder encodeObject:self.expired forKey:kCodingExpiredKey];
+	[aCoder encodeObject:self.frontSide forKey:kCodingFrontSideKey];
+	[aCoder encodeObject:self.flipSide forKey:kCodingFlipSideKey];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
 	if (self = [super init]) {
-		self.deck = [aDecoder decodeIntForKey:kDeckKey];
-		self.expired = [aDecoder decodeObjectForKey:kExpiredKey];
-		self.frontSide = [aDecoder decodeObjectForKey:kFrontSideKey];
-		self.flipSide = [aDecoder decodeObjectForKey:kFlipSideKey];
+		self.deck = [aDecoder decodeIntForKey:kCodingDeckKey];
+		self.expired = [aDecoder decodeObjectForKey:kCodingExpiredKey];
+		self.frontSide = [aDecoder decodeObjectForKey:kCodingFrontSideKey];
+		self.flipSide = [aDecoder decodeObjectForKey:kCodingFlipSideKey];
 	}
 	
 	return self;

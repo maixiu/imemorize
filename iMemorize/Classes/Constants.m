@@ -12,6 +12,8 @@
 @implementation Constants
 
 int const kMaxDeckCount = 10;
-NSString * const kArchiveFileName = @"iMemorize";
+NSString * const kArchiveFileName = @"iMemorize.Model.CardSet";
+NSString * const kResourceJmemorizeFileName = @"jmemorize";
+NSString * const kResourceJmemorizeFileType = @"csv";
 
 @end

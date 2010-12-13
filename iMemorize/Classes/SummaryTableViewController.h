@@ -7,16 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CardSet.h"
 
 
-@interface SummaryTableViewController : UITableViewController
+@interface SummaryTableViewController : UITableViewController <CardSetDelegate>
 {
-	NSArray *cards;
-	NSArray *decks;
-	NSArray *notLearnedCards;
-	NSArray *decksAreExpired;
+	CardSet *set;
 }
 
-@property (nonatomic, retain) NSArray *cards;
+@property (nonatomic, retain) CardSet *set;
 
 @end

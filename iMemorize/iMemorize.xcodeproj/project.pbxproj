@@ -21,6 +21,7 @@
 		0F21A3C912A9BBC10016FA9B /* LearnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F21A3C712A9BBC10016FA9B /* LearnViewController.m */; };
 		0F21A3CA12A9BBC10016FA9B /* Learn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F21A3C812A9BBC10016FA9B /* Learn.xib */; };
 		0F21A77A12AFB07E0016FA9B /* CardSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F21A77912AFB07E0016FA9B /* CardSet.m */; };
+		0F21A90112B03F410016FA9B /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F21A90012B03F410016FA9B /* Deck.m */; };
 		0F61972012987F120020873E /* jmemorize.csv in Resources */ = {isa = PBXBuildFile; fileRef = 0F61971F12987F120020873E /* jmemorize.csv */; };
 		0F619724129882120020873E /* JmemorizeCsvFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F619723129882120020873E /* JmemorizeCsvFileParser.m */; };
 		0F619835129A4A0B0020873E /* jmemorize-test.csv in Resources */ = {isa = PBXBuildFile; fileRef = 0F619834129A4A0B0020873E /* jmemorize-test.csv */; };
@@ -56,6 +57,8 @@
 		0F21A3C812A9BBC10016FA9B /* Learn.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Learn.xib; path = Classes/Learn.xib; sourceTree = "<group>"; };
 		0F21A77812AFB07E0016FA9B /* CardSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSet.h; sourceTree = "<group>"; };
 		0F21A77912AFB07E0016FA9B /* CardSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardSet.m; sourceTree = "<group>"; };
+		0F21A8FF12B03F410016FA9B /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
+		0F21A90012B03F410016FA9B /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 		0F61971F12987F120020873E /* jmemorize.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jmemorize.csv; sourceTree = "<group>"; };
 		0F619722129882120020873E /* JmemorizeCsvFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JmemorizeCsvFileParser.h; sourceTree = "<group>"; };
 		0F619723129882120020873E /* JmemorizeCsvFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JmemorizeCsvFileParser.m; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 			children = (
 				0FDFFD3D1296A6E3009D8D56 /* Card.h */,
 				0FDFFD3E1296A6E3009D8D56 /* Card.m */,
+				0F21A8FF12B03F410016FA9B /* Deck.h */,
+				0F21A90012B03F410016FA9B /* Deck.m */,
 				0F21A77812AFB07E0016FA9B /* CardSet.h */,
 				0F21A77912AFB07E0016FA9B /* CardSet.m */,
 			);
@@ -355,6 +360,7 @@
 				0F21A31D12A997860016FA9B /* LearnSettingsViewController.m in Sources */,
 				0F21A3C912A9BBC10016FA9B /* LearnViewController.m in Sources */,
 				0F21A77A12AFB07E0016FA9B /* CardSet.m in Sources */,
+				0F21A90112B03F410016FA9B /* Deck.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
