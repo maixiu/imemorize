@@ -53,10 +53,23 @@
 
 - (void)reschedule
 {
-	int oneDay = 60*60*24;
-	int expiredDays = 2^(self.deck - 1);
+	if (self.deck >0) {
+		int oneDay = 60*60*24;
+		int expiredDays = pow(2, (self.deck - 1));
+		self.expired = [NSDate dateWithTimeIntervalSinceNow:oneDay * expiredDays];
+	}
+	else {
+		self.expired = nil;
+	}
+}
+
+- (BOOL)isExpired
+{
+	if ([self.expired compare:[NSDate date]] == NSOrderedAscending) {
+		return YES;
+	}
 	
-	self.expired = [NSDate dateWithTimeIntervalSinceNow:oneDay * expiredDays];
+	return NO;
 }
 
 

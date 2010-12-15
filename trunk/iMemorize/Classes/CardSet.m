@@ -19,19 +19,8 @@
 
 @implementation CardSet
 
-@synthesize cards, decks, cardsNotLearned, isExpired;
+@synthesize cards, decks, cardsNotLearned;
 @synthesize delegates;
-
-- (BOOL)isExpired
-{
-	for (Deck *deck in self.decks) {
-		if (deck.isExpired) {
-			return YES;
-		}
-	}
-	
-	return NO;
-}
 
 - (id)init
 {
@@ -165,6 +154,17 @@
 	for (id <CardSetDelegate> delegate in self.delegates) {
 		[delegate cardsUpdated:self];
 	}
+}
+
+- (BOOL)isExpired
+{
+	for (Deck *deck in self.decks) {
+		if ([deck isExpired]) {
+			return YES;
+		}
+	}
+	
+	return NO;
 }
 
 #pragma mark -

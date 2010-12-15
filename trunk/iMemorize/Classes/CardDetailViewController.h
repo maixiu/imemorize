@@ -15,10 +15,14 @@
 	Card *card;
 	UILabel *frontSide;
 	UITextView *flipSide;
+	UILabel *lblDeck;
+	UILabel *lblExpired;
 }
 
-@property (retain) Card *card;
-@property (retain) IBOutlet UILabel *frontSide;
-@property (retain) IBOutlet UITextView *flipSide;
+@property (nonatomic, retain) Card *card;
+@property (nonatomic, retain) IBOutlet UILabel *frontSide;
+@property (nonatomic, retain) IBOutlet UITextView *flipSide;
+@property (nonatomic, retain) IBOutlet UILabel *lblDeck;
+@property (nonatomic, retain) IBOutlet UILabel *lblExpired;
 
 @end

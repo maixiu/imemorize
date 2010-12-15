@@ -14,14 +14,13 @@
 @interface Deck : NSObject <NSCoding>
 {
 	NSArray *cards;
-	BOOL isExpired;
 	int position;
 }
 
 + (id)deckWithPosition:(int)newPosition;
+- (BOOL)isExpired;
 
 @property (nonatomic, retain) NSArray *cards;
-@property (nonatomic, readonly) BOOL isExpired;
 @property (nonatomic) int position;
 
 @end
