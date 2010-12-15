@@ -74,7 +74,7 @@
 	card.deck++;
 	if (card.deck > kMaxDeckCount)
 		card.deck = kMaxDeckCount;
-	
+		
 	[card reschedule];
 	[self showNextShuffleCardAndRemoveCurrent:YES];
 	[self updateProgress:self.totalCardsCount - self.cards.count
@@ -87,7 +87,7 @@
 	
 	//La carte est mise dans le 1er deck
 	Card *card = [self.cards objectAtIndex:self.currentCardIndex];
-	card.deck = 1;
+	card.deck = 0;
 	
 	[card reschedule];
 	[self showNextShuffleCardAndRemoveCurrent:NO];

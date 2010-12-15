@@ -11,7 +11,7 @@
 
 @implementation CardDetailViewController
 @synthesize card;
-@synthesize frontSide, flipSide;
+@synthesize frontSide, flipSide, lblDeck, lblExpired;
 
 - (void)viewDidLoad
 {
@@ -24,7 +24,19 @@
 	self.title = self.card.frontSide;
 	self.frontSide.text = self.card.frontSide;
 	self.flipSide.text = self.card.flipSide;
+	self.lblDeck.text = self.card.deck > 0 ? [NSString stringWithFormat:@"Deck %d", self.card.deck] : @"Not learned";
 	
+	if ([self.card isExpired]) {
+		self.lblExpired.text = @"Expired !";
+	}
+	else {
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateStyle:NSDateFormatterShortStyle];
+		[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+		self.lblExpired.text = [dateFormatter stringFromDate:self.card.expired];
+		[dateFormatter release];
+	}
+
 	[bbItem release];
 }
 

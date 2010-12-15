@@ -12,19 +12,8 @@
 
 @implementation Deck
 
-@synthesize cards, isExpired, position;
+@synthesize cards, position;
 
-- (BOOL)isExpired
-{
-	NSDate *now = [NSDate dateWithTimeIntervalSinceNow:0];
-	for (Card *card in self.cards) {
-		if ([card.expired compare:now] == NSOrderedAscending) {
-			return YES;
-		}
-	}
-	
-	return NO;
-}
 
 #pragma mark -
 #pragma mark Initialization
@@ -36,6 +25,20 @@
 	return newDeck;
 }
 
+
+#pragma mark -
+#pragma mark Methods
+
+- (BOOL)isExpired
+{
+	for (Card *card in self.cards) {
+		if ([card isExpired]) {
+			return YES;
+		}
+	}
+	
+	return NO;
+}
 
 #pragma mark -
 #pragma mark NSCoding protocol

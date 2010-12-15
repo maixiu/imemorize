@@ -23,6 +23,7 @@
 
 + (id)cardWithFrontSide:(NSString *)front flipSide:(NSString *)flip deck:(int)newDeck;
 - (void)reschedule;
+- (BOOL)isExpired;
 
 @property int deck;
 @property (nonatomic, retain) NSDate *expired;

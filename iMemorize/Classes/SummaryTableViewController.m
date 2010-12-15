@@ -55,7 +55,7 @@
 	if (indexPath.row == 0) {
 		cell.textLabel.text = @"Summary";
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", self.set.cards.count];
-		if (self.set.isExpired) {
+		if ([self.set isExpired]) {
 			cellImage = [UIImage imageNamed:@"state_forgotten.gif"];
 		}
 		else {

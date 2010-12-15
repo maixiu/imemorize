@@ -22,7 +22,6 @@
 	NSArray *cards;
 	NSArray *decks;
 	NSArray *cardsNotLearned;
-	BOOL isExpired;
 	NSMutableArray *delegates;
 }
 
@@ -32,10 +31,10 @@
 - (NSArray *)getCardsToLearn:(int)nbCardsToLearn thatAreKnown:(BOOL)isKnown;
 - (void)registerDelegate:(id <CardSetDelegate>)delegate;
 - (void)updateCards:(NSArray *)updatedCards;
+- (BOOL)isExpired;
 
 @property (nonatomic, retain) NSArray *cards;
 @property (nonatomic, retain) NSArray *decks;
 @property (nonatomic, retain) NSArray *cardsNotLearned;
-@property (nonatomic, readonly) BOOL isExpired;
 
 @end
