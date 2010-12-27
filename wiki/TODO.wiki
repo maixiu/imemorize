@@ -1,2 +1,6 @@
 #labels Phase-Requirements
 = TODO =
+
+  # Rajouter une pastille (app + tab "iMemorize") avec le nombre de cartes éxpirées (*bonus:* _lorsque l'appli n'est pas lancée, est-il possible d'avoir un service qui va récupérer le nombre de cartes expirées_)
+  # Gérer la modification du verso des cartes dans la tab "iMemorize"
+  # Implémenter la vue graphique
