@@ -1,6 +1,2 @@
 #labels Phase-Requirements
 = TODO =
-
-  * Dans la view "Learn":
-    * Rajouter des couleurs pour les boutons "Yes"/"No"
-    * Leur faire prendre toute la largeur (enlever le "Cancel")
