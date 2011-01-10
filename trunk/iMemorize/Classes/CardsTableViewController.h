@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Card.h"
 
-
-@interface CardsTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
+@interface CardsTableViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, CardDelegate>
 {
 	NSArray *cards;
 	NSArray *sections;

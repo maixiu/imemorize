@@ -10,6 +10,7 @@
 #import "LearnViewController.h"
 #import "Card.h"
 #import "Constants.h";
+#import "CardDetailEditViewController.h"
 
 
 @interface LearnViewController()
@@ -93,6 +94,24 @@
 	[self showNextShuffleCardAndRemoveCurrent:NO];
 }
 
+- (IBAction)btnEditClicked:(id)sender
+{
+	Card *card = [self.cards objectAtIndex:self.currentCardIndex];
+	CardDetailEditViewController *cardDetailEdit = [[CardDetailEditViewController alloc] initWithNibName:@"CardDetailEdit"
+																								  bundle:nil];
+	cardDetailEdit.card = card;
+	[cardDetailEdit setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+	[cardDetailEdit setViewClosedCallbackWithTarget:self andSelector:@selector(cardDetailClosed)];
+	[self presentModalViewController:cardDetailEdit animated:YES];
+}
+
+- (void)cardDetailClosed
+{
+	Card *card = [self.cards objectAtIndex:self.currentCardIndex];
+	self.txtFlip.text = card.flipSide;
+	// Save the new flip side
+	[card setFlipSideAndNotify:self.txtFlip.text];
+}
 
 #pragma mark -
 #pragma mark Private methods
@@ -100,6 +119,7 @@
 - (void)showAnswer:(BOOL)show
 {
 	self.btnAnswer.hidden = show;
+	self.btnCancel.hidden = show;
 	self.btnYes.hidden = !show;
 	self.btnNo.hidden = !show;
 	self.txtFlip.hidden = !show;

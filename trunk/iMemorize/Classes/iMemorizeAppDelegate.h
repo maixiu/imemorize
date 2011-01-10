@@ -10,7 +10,7 @@
 #import "LearnSettingsViewController.h"
 #import "CardSet.h"
 
-@interface iMemorizeAppDelegate : NSObject <UIApplicationDelegate>
+@interface iMemorizeAppDelegate : NSObject <UIApplicationDelegate, CardSetDelegate>
 {
 	UIWindow *window;
 	UINavigationController *cardsNavigation;

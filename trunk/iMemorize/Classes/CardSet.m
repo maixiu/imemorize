@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "JmemorizeCsvFileParser.h"
 #import "Deck.h"
+#import "NSArrayShuffle.h"
 
 
 @interface CardSet()
@@ -124,20 +125,32 @@
 
 - (NSArray *)getCardsToLearn:(int)nbCardsToLearn thatAreKnown:(BOOL)isKnown
 {
-	NSMutableArray *cardsToLearn = [NSMutableArray arrayWithCapacity:self.cards.count];
+	NSMutableArray *cardsToLearn = [NSMutableArray arrayWithCapacity:nbCardsToLearn];
 	
-	for (Card *card in self.cards) {
-		BOOL cardIsExpired = [card.expired compare:[NSDate dateWithTimeIntervalSinceNow:0]] == NSOrderedAscending;
-		//Si unlearned est sélectionné || si expired est sélectionné
-		if ((!isKnown && card.deck == 0) || (isKnown && cardIsExpired))
-		{
-			[cardsToLearn addObject:card];
+	if (isKnown) {
+		for (Deck *deck in self.decks) {
+			for (Card *card in deck.cards) {
+				if ([card isExpired]) {
+					[cardsToLearn addObject:card];
+				}
+				
+				if (cardsToLearn.count == nbCardsToLearn) {
+					break;
+				}
+			}
+			
 			if (cardsToLearn.count == nbCardsToLearn) {
 				break;
 			}
 		}
 	}
-	
+	else {
+		NSArray *shuffleCardsNotLearned = [self.cardsNotLearned shuffledArray];
+		for (Card *card in shuffleCardsNotLearned) {
+			[cardsToLearn addObject:card];
+		}
+	}
+
 	return cardsToLearn;
 }
 
@@ -165,6 +178,17 @@
 	}
 	
 	return NO;
+}
+
+- (int)cardsExpiredCount
+{
+	int count = 0;
+	for (Card *card in self.cards) {
+		if ([card isExpired])
+			count++;
+	}
+	
+	return count;
 }
 
 #pragma mark -

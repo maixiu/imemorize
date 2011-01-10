@@ -25,6 +25,16 @@
 @synthesize cards;
 @synthesize sections, pagedCardSet, searchCards;
 
+- (void)setCards:(NSArray *)newCards
+{
+	[cards release];
+	cards = [newCards retain];
+	
+	for (Card *card in self.cards) {
+		[card registerDelegate:self];
+	}
+}
+
 - (NSDictionary *)pagedCardSet
 {
 	if (!pagedCardSet) {
@@ -42,10 +52,10 @@
 			}
 		}
 		
-		pagedCardSet = sortedCards;
+		pagedCardSet = [sortedCards retain];
 	}
 	
-	return [pagedCardSet retain];
+	return pagedCardSet;
 }
 
 - (NSArray *)sections
@@ -58,21 +68,6 @@
 	}
 	
 	return sections;
-}
-
-
-#pragma mark -
-#pragma mark View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-	UIBarButtonItem *bbItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-																			target:nil
-																			action:nil];
-	self.navigationItem.rightBarButtonItem = bbItem;
-	[bbItem release];
 }
 
 
@@ -107,7 +102,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-	if (tableView == self.tableView) {
+	if (tableView == self.tableView && self.sections.count > 15) {
 		return sections;
 	}
 	
@@ -325,7 +320,23 @@
 
 
 #pragma mark -
+#pragma mark Card Delegate
+
+- (void)cardUpdated:(id)sender
+{
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
 #pragma mark Memory management
+
+- (void)viewDidUnload
+{
+	for (Card *card in self.cards) {
+		[card unSubscribeDelegate:self];
+	}
+}
 
 - (void)dealloc
 {

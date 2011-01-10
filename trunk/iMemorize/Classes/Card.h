@@ -13,17 +13,26 @@
 #define kCodingFrontSideKey	@"frontSide"
 #define kCodingFlipSideKey	@"flipSide"
 
+@protocol CardDelegate
+- (void)cardUpdated:(id)sender;
+@end
+
+
 @interface Card : NSObject <NSCoding>
 {
 	int deck;
 	NSDate *expired;
 	NSString *frontSide;
 	NSString *flipSide;
+	NSMutableArray *delegates;
 }
 
 + (id)cardWithFrontSide:(NSString *)front flipSide:(NSString *)flip deck:(int)newDeck;
 - (void)reschedule;
 - (BOOL)isExpired;
+- (void)registerDelegate:(id <CardDelegate>)delegate;
+- (void)unSubscribeDelegate:(id <CardDelegate>)delegate;
+- (void)setFlipSideAndNotify:(NSString *)newFlipSide;
 
 @property int deck;
 @property (nonatomic, retain) NSDate *expired;

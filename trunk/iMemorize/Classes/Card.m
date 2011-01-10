@@ -9,9 +9,26 @@
 #import "Card.h"
 
 
+@interface Card()
+@property (nonatomic, retain) NSMutableArray *delegates;
+- (void)sendCardUpdated;
+@end
+
+
 @implementation Card
 
 @synthesize frontSide, flipSide, deck, expired;
+@synthesize delegates;
+
+- (id)init
+{
+	if (self = [super init]) {
+		self.delegates = [NSMutableArray arrayWithCapacity:5];
+	}
+	
+	return self;
+}
+
 
 #pragma mark -
 #pragma mark NSCoding protocol
@@ -26,7 +43,7 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-	if (self = [super init]) {
+	if (self = [self init]) {
 		self.deck = [aDecoder decodeIntForKey:kCodingDeckKey];
 		self.expired = [aDecoder decodeObjectForKey:kCodingExpiredKey];
 		self.frontSide = [aDecoder decodeObjectForKey:kCodingFrontSideKey];
@@ -53,7 +70,7 @@
 
 - (void)reschedule
 {
-	if (self.deck >0) {
+	if (self.deck > 0) {
 		int oneDay = 60*60*24;
 		int expiredDays = pow(2, (self.deck - 1));
 		self.expired = [NSDate dateWithTimeIntervalSinceNow:oneDay * expiredDays];
@@ -70,6 +87,29 @@
 	}
 	
 	return NO;
+}
+
+- (void)setFlipSideAndNotify:(NSString *)newFlipSide
+{
+	self.flipSide = newFlipSide;
+	[self sendCardUpdated];
+} 
+
+- (void)registerDelegate:(id <CardDelegate>)delegate
+{
+	[self.delegates addObject:delegate];
+}
+
+- (void)unSubscribeDelegate:(id <CardDelegate>)delegate
+{
+	[self.delegates removeObject:delegate];
+}
+
+- (void)sendCardUpdated
+{
+	for (id <CardDelegate> delegate in self.delegates) {
+		[delegate cardUpdated:self];
+	}
 }
 
 
