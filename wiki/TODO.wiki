@@ -3,5 +3,4 @@
 
   # Rajouter une pastille (app + tab "iMemorize") avec le nombre de cartes éxpirées (*bonus:* _lorsque l'appli n'est pas lancée, est-il possible d'avoir un service qui va récupérer le nombre de cartes expirées_)
   # Avoir un timer qui vérifier toutes les xx secondes les cartes expirées
-  # Gérer la modification du verso des cartes dans la tab "iMemorize"
   # Implémenter la vue graphique
