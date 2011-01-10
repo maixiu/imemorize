@@ -22,11 +22,20 @@
 		0F21A3CA12A9BBC10016FA9B /* Learn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F21A3C812A9BBC10016FA9B /* Learn.xib */; };
 		0F21A77A12AFB07E0016FA9B /* CardSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F21A77912AFB07E0016FA9B /* CardSet.m */; };
 		0F21A90112B03F410016FA9B /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F21A90012B03F410016FA9B /* Deck.m */; };
+		0F2967D612C7EA0F00B56464 /* No.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2967D212C7EA0F00B56464 /* No.png */; };
+		0F2967D712C7EA0F00B56464 /* NoHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2967D312C7EA0F00B56464 /* NoHighlighted.png */; };
+		0F2967D812C7EA0F00B56464 /* Yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2967D412C7EA0F00B56464 /* Yes.png */; };
+		0F2967D912C7EA0F00B56464 /* YesHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2967D512C7EA0F00B56464 /* YesHighlighted.png */; };
+		0F51416312D5EC7A0002C3F3 /* CardDetailEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F51416112D5EC7A0002C3F3 /* CardDetailEditViewController.m */; };
+		0F51416412D5EC7A0002C3F3 /* CardDetailEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F51416212D5EC7A0002C3F3 /* CardDetailEdit.xib */; };
+		0F60185D12BFFDB1008AD022 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F60185C12BFFDB1008AD022 /* icon.png */; };
+		0F6018F612C0D452008AD022 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F6018F512C0D452008AD022 /* Default.png */; };
 		0F61972012987F120020873E /* jmemorize.csv in Resources */ = {isa = PBXBuildFile; fileRef = 0F61971F12987F120020873E /* jmemorize.csv */; };
 		0F619724129882120020873E /* JmemorizeCsvFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F619723129882120020873E /* JmemorizeCsvFileParser.m */; };
 		0F619835129A4A0B0020873E /* jmemorize-test.csv in Resources */ = {isa = PBXBuildFile; fileRef = 0F619834129A4A0B0020873E /* jmemorize-test.csv */; };
 		0F619912129AFB570020873E /* CardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F619910129AFB570020873E /* CardDetailViewController.m */; };
 		0F619913129AFB570020873E /* CardDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F619911129AFB570020873E /* CardDetail.xib */; };
+		0F79A28512B97AC6000D62A9 /* NSArrayShuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F79A28412B97AC6000D62A9 /* NSArrayShuffle.m */; };
 		0FB2CCFE12A2E8FC00F3E299 /* SummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2CCFD12A2E8FC00F3E299 /* SummaryTableViewController.m */; };
 		0FB2CE1312A59D6600F3E299 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2CE1212A59D6600F3E299 /* Constants.m */; };
 		0FDFFD3F1296A6E3009D8D56 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFFD3E1296A6E3009D8D56 /* Card.m */; };
@@ -59,6 +68,15 @@
 		0F21A77912AFB07E0016FA9B /* CardSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardSet.m; sourceTree = "<group>"; };
 		0F21A8FF12B03F410016FA9B /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
 		0F21A90012B03F410016FA9B /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
+		0F2967D212C7EA0F00B56464 /* No.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = No.png; sourceTree = "<group>"; };
+		0F2967D312C7EA0F00B56464 /* NoHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoHighlighted.png; sourceTree = "<group>"; };
+		0F2967D412C7EA0F00B56464 /* Yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yes.png; sourceTree = "<group>"; };
+		0F2967D512C7EA0F00B56464 /* YesHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YesHighlighted.png; sourceTree = "<group>"; };
+		0F51416012D5EC7A0002C3F3 /* CardDetailEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardDetailEditViewController.h; path = ../CardDetailEditViewController.h; sourceTree = "<group>"; };
+		0F51416112D5EC7A0002C3F3 /* CardDetailEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardDetailEditViewController.m; path = ../CardDetailEditViewController.m; sourceTree = "<group>"; };
+		0F51416212D5EC7A0002C3F3 /* CardDetailEdit.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardDetailEdit.xib; sourceTree = "<group>"; };
+		0F60185C12BFFDB1008AD022 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		0F6018F512C0D452008AD022 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0F61971F12987F120020873E /* jmemorize.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jmemorize.csv; sourceTree = "<group>"; };
 		0F619722129882120020873E /* JmemorizeCsvFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JmemorizeCsvFileParser.h; sourceTree = "<group>"; };
 		0F619723129882120020873E /* JmemorizeCsvFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JmemorizeCsvFileParser.m; sourceTree = "<group>"; };
@@ -66,6 +84,8 @@
 		0F61990F129AFB570020873E /* CardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDetailViewController.h; sourceTree = "<group>"; };
 		0F619910129AFB570020873E /* CardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailViewController.m; sourceTree = "<group>"; };
 		0F619911129AFB570020873E /* CardDetail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CardDetail.xib; path = Classes/CardDetail.xib; sourceTree = "<group>"; };
+		0F79A28312B97AC6000D62A9 /* NSArrayShuffle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayShuffle.h; sourceTree = "<group>"; };
+		0F79A28412B97AC6000D62A9 /* NSArrayShuffle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayShuffle.m; sourceTree = "<group>"; };
 		0FB2CCFC12A2E8FC00F3E299 /* SummaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryTableViewController.h; sourceTree = "<group>"; };
 		0FB2CCFD12A2E8FC00F3E299 /* SummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryTableViewController.m; sourceTree = "<group>"; };
 		0FB2CE1112A59D6600F3E299 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -117,6 +137,7 @@
 		0F21A2FE12A921F30016FA9B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0FEC584E12DBB0D700125F4A /* Common */,
 				0F21A2FF12A922280016FA9B /* Cards */,
 				0F21A30012A922750016FA9B /* Learn */,
 			);
@@ -150,8 +171,9 @@
 		0F21A31F12A997940016FA9B /* Cards */ = {
 			isa = PBXGroup;
 			children = (
-				0F619911129AFB570020873E /* CardDetail.xib */,
 				0F062F4C129EF4DF009177F3 /* CardsTable.xib */,
+				0F619911129AFB570020873E /* CardDetail.xib */,
+				0F51416212D5EC7A0002C3F3 /* CardDetailEdit.xib */,
 			);
 			name = Cards;
 			sourceTree = "<group>";
@@ -159,6 +181,10 @@
 		0F21A32012A997A00016FA9B /* Learn */ = {
 			isa = PBXGroup;
 			children = (
+				0F2967D212C7EA0F00B56464 /* No.png */,
+				0F2967D312C7EA0F00B56464 /* NoHighlighted.png */,
+				0F2967D412C7EA0F00B56464 /* Yes.png */,
+				0F2967D512C7EA0F00B56464 /* YesHighlighted.png */,
 				0F21A3C812A9BBC10016FA9B /* Learn.xib */,
 				0F21A31C12A997860016FA9B /* LearnSettings.xib */,
 			);
@@ -185,6 +211,8 @@
 			children = (
 				0F619722129882120020873E /* JmemorizeCsvFileParser.h */,
 				0F619723129882120020873E /* JmemorizeCsvFileParser.m */,
+				0F79A28312B97AC6000D62A9 /* NSArrayShuffle.h */,
+				0F79A28412B97AC6000D62A9 /* NSArrayShuffle.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -200,6 +228,15 @@
 				0F21A77912AFB07E0016FA9B /* CardSet.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		0FEC584E12DBB0D700125F4A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0F51416012D5EC7A0002C3F3 /* CardDetailEditViewController.h */,
+				0F51416112D5EC7A0002C3F3 /* CardDetailEditViewController.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -234,6 +271,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0F6018F512C0D452008AD022 /* Default.png */,
+				0F60185C12BFFDB1008AD022 /* icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				0F21A32012A997A00016FA9B /* Learn */,
 				0F21A31F12A997940016FA9B /* Cards */,
@@ -323,6 +362,13 @@
 				0F21A36D12A9A4960016FA9B /* tab_graph.png in Resources */,
 				0F21A36F12A9A4D90016FA9B /* tab_learn.png in Resources */,
 				0F21A3CA12A9BBC10016FA9B /* Learn.xib in Resources */,
+				0F60185D12BFFDB1008AD022 /* icon.png in Resources */,
+				0F6018F612C0D452008AD022 /* Default.png in Resources */,
+				0F2967D612C7EA0F00B56464 /* No.png in Resources */,
+				0F2967D712C7EA0F00B56464 /* NoHighlighted.png in Resources */,
+				0F2967D812C7EA0F00B56464 /* Yes.png in Resources */,
+				0F2967D912C7EA0F00B56464 /* YesHighlighted.png in Resources */,
+				0F51416412D5EC7A0002C3F3 /* CardDetailEdit.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +407,8 @@
 				0F21A3C912A9BBC10016FA9B /* LearnViewController.m in Sources */,
 				0F21A77A12AFB07E0016FA9B /* CardSet.m in Sources */,
 				0F21A90112B03F410016FA9B /* Deck.m in Sources */,
+				0F79A28512B97AC6000D62A9 /* NSArrayShuffle.m in Sources */,
+				0F51416312D5EC7A0002C3F3 /* CardDetailEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

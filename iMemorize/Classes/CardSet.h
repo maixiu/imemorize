@@ -32,6 +32,7 @@
 - (void)registerDelegate:(id <CardSetDelegate>)delegate;
 - (void)updateCards:(NSArray *)updatedCards;
 - (BOOL)isExpired;
+- (int)cardsExpiredCount;
 
 @property (nonatomic, retain) NSArray *cards;
 @property (nonatomic, retain) NSArray *decks;

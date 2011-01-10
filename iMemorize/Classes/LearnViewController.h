@@ -47,5 +47,6 @@
 - (IBAction)btnYesTouchUpInside:(id)sender;
 - (IBAction)btnNoTouchUpInside:(id)sender;
 - (IBAction)btnCloseTouchUpInside:(id)sender;
+- (IBAction)btnEditClicked:(id)sender;
 
 @end

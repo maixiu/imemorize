@@ -7,6 +7,7 @@
 //
 
 #import "CardDetailViewController.h"
+#import "CardDetailEditViewController.h"
 
 
 @implementation CardDetailViewController
@@ -17,10 +18,7 @@
 {
     [super viewDidLoad];
 	
-	UIBarButtonItem *bbItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-																			target:nil
-																			action:nil];
-	self.navigationItem.rightBarButtonItem = bbItem;
+	self.navigationItem.rightBarButtonItem = [self editButtonItem];
 	self.title = self.card.frontSide;
 	self.frontSide.text = self.card.frontSide;
 	self.flipSide.text = self.card.flipSide;
@@ -36,14 +34,39 @@
 		self.lblExpired.text = [dateFormatter stringFromDate:self.card.expired];
 		[dateFormatter release];
 	}
-
-	[bbItem release];
 }
+
+
+#pragma mark -
+#pragma mark  Events
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+	CardDetailEditViewController *cardDetailEdit = [[CardDetailEditViewController alloc] initWithNibName:@"CardDetailEdit"
+																								  bundle:nil];
+	cardDetailEdit.card = self.card;
+	[cardDetailEdit setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+	[cardDetailEdit setViewClosedCallbackWithTarget:self andSelector:@selector(cardDetailClosed)];
+	[self presentModalViewController:cardDetailEdit animated:YES];
+}
+
+- (void)cardDetailClosed
+{
+	self.flipSide.text = self.card.flipSide;
+	// Save the new flip side
+	[self.card setFlipSideAndNotify:self.flipSide.text];
+}
+
+
+#pragma mark -
+#pragma mark Memory management
 
 - (void)viewDidUnload
 {
 	self.frontSide = nil;
 	self.flipSide = nil;
+	self.lblDeck = nil;
+	self.lblExpired = nil;
     [super viewDidUnload];
 }
 
@@ -51,6 +74,8 @@
 {
 	[frontSide release];
 	[flipSide release];
+	[lblDeck release];
+	[lblExpired release];
     [super dealloc];
 }
 
