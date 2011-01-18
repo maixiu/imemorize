@@ -146,8 +146,8 @@
 	}
 	else {
 		NSArray *shuffleCardsNotLearned = [self.cardsNotLearned shuffledArray];
-		for (Card *card in shuffleCardsNotLearned) {
-			[cardsToLearn addObject:card];
+		for (int i = 0; i < nbCardsToLearn; i++) {
+			[cardsToLearn addObject:[shuffleCardsNotLearned objectAtIndex:i]];
 		}
 	}
 

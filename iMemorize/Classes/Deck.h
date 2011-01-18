@@ -18,6 +18,7 @@
 }
 
 + (id)deckWithPosition:(int)newPosition;
+- (NSArray *)getCardsExpired;
 - (BOOL)isExpired;
 
 @property (nonatomic, retain) NSArray *cards;
