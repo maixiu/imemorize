@@ -40,6 +40,10 @@
 		0FB2CE1312A59D6600F3E299 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FB2CE1212A59D6600F3E299 /* Constants.m */; };
 		0FDFFD3F1296A6E3009D8D56 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFFD3E1296A6E3009D8D56 /* Card.m */; };
 		0FDFFD481296A880009D8D56 /* CardsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFFD471296A880009D8D56 /* CardsTableViewController.m */; };
+		0FEC589312DDD5B800125F4A /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC589212DDD5B800125F4A /* GraphView.m */; };
+		0FEC58A412DDD72D00125F4A /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC58A312DDD72D00125F4A /* GraphViewController.m */; };
+		0FEC5A3A12DF932100125F4A /* GraphBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC5A3912DF932100125F4A /* GraphBar.m */; };
+		0FEC5A4512DF937800125F4A /* GraphSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FEC5A4412DF937800125F4A /* GraphSection.m */; };
 		1D3623260D0F684500981E51 /* iMemorizeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* iMemorizeAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -94,6 +98,14 @@
 		0FDFFD3E1296A6E3009D8D56 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		0FDFFD461296A880009D8D56 /* CardsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsTableViewController.h; sourceTree = "<group>"; };
 		0FDFFD471296A880009D8D56 /* CardsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsTableViewController.m; sourceTree = "<group>"; };
+		0FEC589112DDD5B800125F4A /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphView.h; sourceTree = "<group>"; };
+		0FEC589212DDD5B800125F4A /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphView.m; sourceTree = "<group>"; };
+		0FEC58A212DDD72D00125F4A /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
+		0FEC58A312DDD72D00125F4A /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
+		0FEC5A3812DF932100125F4A /* GraphBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphBar.h; sourceTree = "<group>"; };
+		0FEC5A3912DF932100125F4A /* GraphBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphBar.m; sourceTree = "<group>"; };
+		0FEC5A4312DF937800125F4A /* GraphSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphSection.h; sourceTree = "<group>"; };
+		0FEC5A4412DF937800125F4A /* GraphSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphSection.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* iMemorizeAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iMemorizeAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* iMemorizeAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iMemorizeAppDelegate.m; sourceTree = "<group>"; };
@@ -137,6 +149,7 @@
 		0F21A2FE12A921F30016FA9B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0FEC588D12DDD17300125F4A /* Graph */,
 				0FEC584E12DBB0D700125F4A /* Common */,
 				0F21A2FF12A922280016FA9B /* Cards */,
 				0F21A30012A922750016FA9B /* Learn */,
@@ -237,6 +250,21 @@
 				0F51416112D5EC7A0002C3F3 /* CardDetailEditViewController.m */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		0FEC588D12DDD17300125F4A /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				0FEC58A212DDD72D00125F4A /* GraphViewController.h */,
+				0FEC58A312DDD72D00125F4A /* GraphViewController.m */,
+				0FEC589112DDD5B800125F4A /* GraphView.h */,
+				0FEC589212DDD5B800125F4A /* GraphView.m */,
+				0FEC5A3812DF932100125F4A /* GraphBar.h */,
+				0FEC5A3912DF932100125F4A /* GraphBar.m */,
+				0FEC5A4312DF937800125F4A /* GraphSection.h */,
+				0FEC5A4412DF937800125F4A /* GraphSection.m */,
+			);
+			name = Graph;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -409,6 +437,10 @@
 				0F21A90112B03F410016FA9B /* Deck.m in Sources */,
 				0F79A28512B97AC6000D62A9 /* NSArrayShuffle.m in Sources */,
 				0F51416312D5EC7A0002C3F3 /* CardDetailEditViewController.m in Sources */,
+				0FEC589312DDD5B800125F4A /* GraphView.m in Sources */,
+				0FEC58A412DDD72D00125F4A /* GraphViewController.m in Sources */,
+				0FEC5A3A12DF932100125F4A /* GraphBar.m in Sources */,
+				0FEC5A4512DF937800125F4A /* GraphSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

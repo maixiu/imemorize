@@ -29,6 +29,18 @@
 #pragma mark -
 #pragma mark Methods
 
+- (NSArray *)getCardsExpired
+{
+	NSMutableArray *cardsExpired = [NSMutableArray arrayWithCapacity:self.cards.count];
+	for (Card *card in self.cards) {
+		if ([card isExpired]) {
+			[cardsExpired addObject:card];
+		}
+	}
+	
+	return cardsExpired;
+}
+
 - (BOOL)isExpired
 {
 	for (Card *card in self.cards) {

@@ -18,7 +18,7 @@
 
 @implementation iMemorizeAppDelegate
 
-@synthesize window, cardsNavigation, mainTabBarController, learnSettings, set;
+@synthesize window, cardsNavigation, mainTabBarController, learnSettings, graph, set;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -35,6 +35,10 @@
 	
 	// Initialization du view controller "LearnSettings"
 	self.learnSettings.set = self.set;
+	
+	// Initialization du view controller "GraphViewController"
+	self.graph.set = self.set;
+	[self.set registerDelegate:self.graph];
 	
 	[self.cardsNavigation pushViewController:summaryTable animated:NO];
 	[window addSubview:mainTabBarController.view];
